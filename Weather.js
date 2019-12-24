@@ -14,40 +14,39 @@ const weatherOptions = {
     gradient: ["#108dc7", "#ef8e38"]
   },
   Thunderstorm: {
-    iconName: "",
-    gradient: []
+    iconName: "weather-lightning",
+    gradient: ["#c0392b", "#8e44ad"]
   },
   Drizzle: {
-    iconName: "",
-    gradient: []
+    iconName: "weather-hail",
+    gradient: ["#2980B9", "#6DD5FA"]
   },
   Rain: {
-    iconName: "",
-    gradient: []
+    iconName: "weather-rainy",
+    gradient: ["#1F1C2C", "#928DAB"]
   },
   Snow: {
-    iconName: "",
-    gradient: []
+    iconName: "weather-snowy",
+    gradient: ["#D3CCE3", "#E9E4F0"]
   },
   Atmosphere: {
-    iconName: "",
-    gradient: []
+    iconName: "weather-hail",
+    gradient: ["#DBE6F6", "#C5796D"]
   },
   Clear: {
-    iconName: "",
-    gradient: []
+    iconName: "weather-sunny",
+    gradient: ["#fc4a1a", "#f7b733"],
+    title: "쾌청한 날씨",
+    subtitle: "구름이 거치고 날씨가 맑아졌어요!"
   },
   Mist: {
-    iconName: "",
-    gradient: []
-  },
-  Haze: {
-    iconName: "",
-    gradient: []
+    iconName: "weather-fog",
+    gradient: ["#bdc3c7", "#2c3e50"]
   }
 };
 
 export default function Weather({ temp, condition }) {
+  console.log(condition);
   return (
     <LinearGradient
       style={styles.container}
@@ -63,7 +62,12 @@ export default function Weather({ temp, condition }) {
         <Text>{condition}</Text>
         <Text style={styles.temp}>{temp}℃</Text>
       </View>
-      <View style={styles.halfContainer}></View>
+      <View style={{ ...styles.halfContainer, ...styles.textContainer }}>
+        <Text style={styles.title}>{weatherOptions[condition].title}</Text>
+        <Text style={styles.subtitle}>
+          {weatherOptions[condition].subtitle}
+        </Text>
+      </View>
     </LinearGradient>
   );
 }
@@ -97,5 +101,20 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center"
+  },
+  title: {
+    color: "white",
+    fontSize: 44,
+    fontWeight: "300",
+    marginBottom: 10
+  },
+  subtitle: {
+    color: "white",
+    fontWeight: "600",
+    fontSize: 24
+  },
+  textContainer: {
+    paddingHorizontal: 20,
+    alignItems: "flex-start"
   }
 });
